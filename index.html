@@ -23,10 +23,15 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'YOUR_TRACKING_ID');
     </script>
     
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async></script>
+    
+    <!-- Mailchimp Embed -->
+    <script src="https://chimpstatic.com/mcjs-connected/js/users/7f9080a177b0e3a68d94f8812/a75c84e18d1bb03fdce2feada.js"></script>
+
     <style>
         body {
             font-family: 'Roboto', Arial, sans-serif;
@@ -51,7 +56,7 @@
 </head>
 <body>
     <h1>Welcome to My Landing Page</h1>
-    <p>This page is using third-party scripts like Bootstrap, jQuery, Google Analytics, FontAwesome, Google Fonts, and Chart.js.</p>
+    <p>This page is using third-party scripts like Bootstrap, jQuery, Google Analytics, FontAwesome, Google Fonts, Chart.js, Google Maps, and Mailchimp.</p>
     
     <button class="btn btn-primary" id="subscribeButton">Subscribe Now</button>
     
@@ -75,6 +80,19 @@
         document.getElementById("subscribeButton").addEventListener("click", function() {
             alert("Button clicked!");
         });
+        
+        // Google Maps example
+        function initMap() {
+            var location = { lat: -34.397, lng: 150.644 };
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 8,
+                center: location
+            });
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
     </script>
 </body>
 </html>
