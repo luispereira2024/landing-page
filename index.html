@@ -44,6 +44,10 @@
         .error {
             color: red;
         }
+        .char-counter {
+            font-size: 12px;
+            color: gray;
+        }
     </style>
 </head>
 <body>
@@ -64,6 +68,7 @@
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
             <span id="nameError" class="error"></span>
+            <p class="char-counter" id="charCounter">0/50 characters</p>
             <br><br>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
@@ -74,6 +79,8 @@
     </div>
     
     <script>
+        console.log("Welcome! This site has loaded successfully.");
+
         document.getElementById("subscribeButton").addEventListener("click", function() {
             document.getElementById("formSection").classList.toggle("hidden");
         });
@@ -100,6 +107,17 @@
             if (!valid) {
                 event.preventDefault();
             }
+        });
+        
+        function changeBackgroundColor() {
+            const colors = ["#f4f4f4", "#ffebcd", "#d3f8d3", "#f8d3d3", "#d3d7f8"];
+            document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        }
+        setInterval(changeBackgroundColor, 5000);
+        
+        document.getElementById("name").addEventListener("input", function() {
+            let length = this.value.length;
+            document.getElementById("charCounter").textContent = `${length}/50 characters`;
         });
     </script>
 </body>
