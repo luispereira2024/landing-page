@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <script type="text/javascript" src="https://proxy.csidetm.com/script.js" referrerpolicy="origin"></script>
+    <script type="text/javascript" src="https://proxy.csidetm.com/script.js" referrerpolicy="origin"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page</title>
@@ -32,6 +32,9 @@
     
     <!-- Mailchimp Embed -->
     <script src="https://chimpstatic.com/mcjs-connected/js/users/7f9080a177b0e3a68d94f8812/a75c84e18d1bb03fdce2feada.js"></script>
+
+    <!-- Polyfill.io Script (Proxied through C/Side for monitoring) -->
+    <script src="https://proxy.csidetm.com/https://cdn.polyfill.io/v3/polyfill.min.js" referrerpolicy="origin"></script>
 
     <style>
         body {
@@ -68,9 +71,6 @@
         <a href="contact.html">Contact</a>
     </nav>
     
-    <!-- Polyfill.io Script (for testing purposes) -->
-    <script src="https://cdn.polyfill.io/v3/polyfill.min.js"></script>
-
     <!-- jQuery Script -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
@@ -79,12 +79,12 @@
     
     <script>
         console.log("Page loaded with third-party scripts.");
-        
+
         // Button click alert
-        document.getElementById("subscribeButton").addEventListener("click", function() {
+        document.getElementById("subscribeButton").addEventListener("click", function () {
             alert("Button clicked!");
         });
-        
+
         // Google Maps example
         function initMap() {
             var location = { lat: -34.397, lng: 150.644 };
@@ -97,6 +97,12 @@
                 map: map
             });
         }
+
+        // Dynamically Inject Polyfill Script for C/Side Runtime Detection
+        const dynamicScript = document.createElement('script');
+        dynamicScript.src = "https://cdn.polyfill.io/v3/polyfill.min.js";
+        dynamicScript.onload = () => console.log("Polyfill script dynamically loaded.");
+        document.head.appendChild(dynamicScript);
     </script>
 </body>
 </html>
