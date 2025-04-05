@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Content Security Policy (CSP) with Nonce -->
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://proxy.csidetm.com https://proxy.cside.dev 'nonce-123456'; connect-src 'self' https://proxy.csidetm.com;">
+    <!-- Content Security Policy (CSP) -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://proxy.csidetm.com https://proxy.cside.dev; connect-src 'self' https://proxy.csidetm.com;">
 
     <script type="text/javascript" src="https://proxy.csidetm.com/script.js" referrerpolicy="origin"></script>
     <meta charset="UTF-8">
@@ -21,9 +21,9 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- Google Analytics Script -->
+    <!-- Google Analytics Script (Ensure Tracking ID is replaced) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
-    <script nonce="123456">
+    <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -71,13 +71,16 @@
         <a href="contact.html">Contact</a>
     </nav>
     
+    <!-- Hidden Link for Malicious Test -->
+    <a href="/malicious-test.html" style="display: none;">Security Test</a>
+    
     <!-- jQuery Script -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <script nonce="123456">
+    <script>
         console.log("Page loaded with third-party scripts.");
         
         // Button click alert
