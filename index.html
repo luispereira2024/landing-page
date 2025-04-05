@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <!-- Content Security Policy (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://proxy.csidetm.com https://proxy.cside.dev; connect-src 'self' https://proxy.csidetm.com;">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://proxy.csidetm.com https://proxy.cside.dev; connect-src 'self' https://proxy.csidetm.com;">
 
     <script type="text/javascript" src="https://proxy.csidetm.com/script.js" referrerpolicy="origin"></script>
     <meta charset="UTF-8">
@@ -37,7 +37,22 @@
     <script src="https://chimpstatic.com/mcjs-connected/js/users/7f9080a177b0e3a68d94f8812/a75c84e18d1bb03fdce2feada.js"></script>
 
     <!-- Polyfill.io Script (Proxied through C/Side for monitoring) -->
-    <script src="https://proxy.csidetm.com/https://cdn.polyfill.io/v3/polyfill.min.js" referrerpolicy="origin"></script>
+    <script>
+        const script = document.createElement('script');
+        script.src = "https://proxy.csidetm.com/https://cdn.polyfill.io/v3/polyfill.min.js";
+        script.referrerPolicy = "origin";
+        
+        script.onerror = function () {
+            // Fallback to the original Polyfill.io if the proxy fails
+            console.log("C/Side proxy failed, loading Polyfill.io directly.");
+            const fallbackScript = document.createElement('script');
+            fallbackScript.src = "https://cdn.polyfill.io/v3/polyfill.min.js";
+            fallbackScript.referrerPolicy = "origin";
+            document.head.appendChild(fallbackScript);
+        };
+        
+        document.head.appendChild(script);
+    </script>
 
     <style>
         body {
@@ -100,12 +115,6 @@
                 map: map
             });
         }
-
-        // Dynamically Inject Polyfill Script via Proxy
-        const dynamicScript = document.createElement('script');
-        dynamicScript.src = "https://proxy.csidetm.com/https://cdn.polyfill.io/v3/polyfill.min.js";
-        dynamicScript.referrerPolicy = "origin";
-        document.head.appendChild(dynamicScript);
     </script>
 </body>
 </html>
