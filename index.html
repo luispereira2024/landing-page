@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Generate Nonce -->
+    <script>
+        const nonce = btoa(crypto.getRandomValues(new Uint8Array(16)).join(''));
+        document.head.setAttribute("nonce", nonce);
+    </script>
+
     <!-- Content Security Policy (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://proxy.csidetm.com https://proxy.cside.dev; connect-src 'self' https://proxy.csidetm.com;">
+    <meta http-equiv="Content-Security-Policy" 
+          content="script-src 'self' 'nonce-*' 'strict-dynamic' https://proxy.csidetm.com https://proxy.cside.dev; 
+                   connect-src 'self' https://proxy.csidetm.com;">
 
     <script type="text/javascript" src="https://proxy.csidetm.com/script.js" referrerpolicy="origin"></script>
     <meta charset="UTF-8">
@@ -19,11 +27,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <!-- Google Analytics Script (Ensure Tracking ID is replaced) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
-    <script>
+    <script nonce="">
+        const chartScript = document.createElement("script");
+        chartScript.src = "https://cdn.jsdelivr.net/npm/chart.js";
+        chartScript.nonce = document.head.getAttribute("nonce");
+        document.head.appendChild(chartScript);
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID" nonce=""></script>
+    <script nonce="">
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -31,10 +44,20 @@
     </script>
     
     <!-- Google Maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async></script>
-    
+    <script nonce="">
+        const mapsScript = document.createElement("script");
+        mapsScript.src = "https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap";
+        mapsScript.nonce = document.head.getAttribute("nonce");
+        document.head.appendChild(mapsScript);
+    </script>
+
     <!-- Mailchimp Embed -->
-    <script src="https://chimpstatic.com/mcjs-connected/js/users/7f9080a177b0e3a68d94f8812/a75c84e18d1bb03fdce2feada.js"></script>
+    <script nonce="">
+        const mailchimpScript = document.createElement("script");
+        mailchimpScript.src = "https://chimpstatic.com/mcjs-connected/js/users/7f9080a177b0e3a68d94f8812/a75c84e18d1bb03fdce2feada.js";
+        mailchimpScript.nonce = document.head.getAttribute("nonce");
+        document.head.appendChild(mailchimpScript);
+    </script>
 
     <style>
         body {
@@ -71,16 +94,23 @@
         <a href="contact.html">Contact</a>
     </nav>
     
-    <!-- Hidden Link for Malicious Test -->
-    <a href="/malicious-test.html" style="display: none;">Security Test</a>
-    
     <!-- jQuery Script -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+    <script nonce="">
+        const jqueryScript = document.createElement("script");
+        jqueryScript.src = "https://code.jquery.com/jquery-3.6.0.min.js";
+        jqueryScript.nonce = document.head.getAttribute("nonce");
+        document.head.appendChild(jqueryScript);
+    </script>
+
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
+    <script nonce="">
+        const bootstrapScript = document.createElement("script");
+        bootstrapScript.src = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js";
+        bootstrapScript.nonce = document.head.getAttribute("nonce");
+        document.head.appendChild(bootstrapScript);
+    </script>
+
+    <script nonce="">
         console.log("Page loaded with third-party scripts.");
         
         // Button click alert
